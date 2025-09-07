@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>One Mambo Beach Penthouse Concierge</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; line-height: 1.6; color: #333; }
+    header { position: relative; text-align: center; color: white; }
+    header img { width: 100%; height: 50vh; object-fit: cover; }
+    header .overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.4); display: flex; flex-direction: column; justify-content: center; align-items: center; }
+    header h1 { font-size: 2.5em; margin: 0; }
+    header p { font-size: 1.2em; margin: 0.5em 0; }
+    main { padding: 20px; max-width: 900px; margin: auto; }
+    .gallery { display: flex; flex-wrap: wrap; gap: 10px; }
+    .gallery img { width: 100%; max-width: calc(50% - 10px); border-radius: 8px; }
+    .btn { display: inline-block; background-color: #007BFF; color: white; padding: 12px 25px; text-decoration: none; border-radius: 5px; margin-top: 20px; }
+    .btn:hover { background-color: #0056b3; }
+    /* Language dropdown positioning and styling */
+    .language-select {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      padding: 6px 8px;
+      border-radius: 4px;
+      background-color: rgba(255, 255, 255, 0.9);
+      color: #333;
+      font-size: 0.9em;
+      border: 1px solid #ccc;
+      z-index: 1000;
+    }
+    /* Modal styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      padding-top: 100px;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+    .modal-content {
+      background-color: #fefefe;
+      margin: auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+      max-width: 400px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    @media (max-width: 600px) {
+      header h1 { font-size: 2em; }
+      header p { font-size: 1em; }
+      .gallery img { max-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+<header>
+  <!-- Updated hero image to show the actual penthouse living room provided by the host -->
+  <img src="living.jpg" alt="Spacious living room with ocean view">
+
+  <!-- Language dropdown to allow users to choose a different language. This menu is positioned in the top-right corner of the page. -->
+  <select class="language-select" id="language-select" onchange="changeLanguage(this.value)">
+    <option value="en">English</option>
+    <option value="es">Español</option>
+    <option value="pt">Português</option>
+    <option value="nl">Nederlands</option>
+    <option value="de">Deutsch</option>
+    <option value="fr">Français</option>
+  </select>
+  <div class="overlay">
+    <h1 id="title-text">Welcome to One Mambo Beach Concierge</h1>
+    <p id="subtitle-text">Your personalized guest experience starts here</p>
+  </div>
+</header>
+<main>
+  <section>
+    <h2 id="about-heading">About the Penthouse</h2>
+    <p id="about-text">Relax in our luxurious three-bedroom sub-penthouse overlooking the ocean at One Mambo Beach. Enjoy spacious indoor-outdoor living, premium amenities, and breathtaking views of the Caribbean. Whether you're lounging on your private terrace or exploring the vibrant Mambo Boulevard, this penthouse offers the perfect Curaçao getaway.</p>
+  </section>
+  <section>
+    <h2 id="gallery-heading">Gallery</h2>
+    <div class="gallery">
+      <!-- These gallery images were provided by the host to showcase the property -->
+      <img src="sunset.jpg" alt="Sunset view over the property">
+      <img src="dining.jpg" alt="Dining area of the penthouse">
+      <img src="pool.jpg" alt="Swimming pool at One Mambo Beach">
+    </div>
+  </section>
+  <section>
+    <h2 id="assistance-heading">Need Assistance?</h2>
+    <p id="assistance-text">Click below to contact our concierge for questions about the penthouse, the island, and your stay. A message panel will open on this page so you stay right here.</p>
+    <button id="chat-button" class="btn" onclick="openModal()">Chat with Our Concierge</button>
+  </section>
+</main>
+
+<!-- Contact modal -->
+<div id="contact-modal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h3 id="modal-title">Contact Our Concierge</h3>
+    <p id="modal-body1">For assistance, please message us via your Airbnb booking platform. For urgent matters, call or WhatsApp <strong>+5999 671 0054</strong>.</p>
+    <p id="modal-body2">We are always here to help!</p>
+  </div>
+</div>
+
+<script>
+function openModal() {
+  document.getElementById('contact-modal').style.display = 'block';
+}
+
+// Dictionary containing translations for supported languages
+const translations = {
+  es: {
+    title: 'Bienvenido a One Mambo Beach Concierge',
+    subtitle: 'Tu experiencia personalizada comienza aquí',
+    aboutHeading: 'Sobre el Penthouse',
+    aboutText: 'Relájate en nuestro lujoso sub-penthouse de tres habitaciones con vistas al océano en One Mambo Beach. Disfruta de vida espaciosa interior y exterior, comodidades premium y vistas impresionantes del Caribe. Ya sea que te relajes en tu terraza privada o explores el vibrante Mambo Boulevard, este penthouse ofrece la escapada perfecta en Curazao.',
+    galleryHeading: 'Galería',
+    assistanceHeading: '¿Necesitas Ayuda?',
+    assistanceText: 'Haz clic abajo para contactar a nuestro concierge para preguntas sobre el penthouse, la isla y tu estancia. Un panel de mensajes se abrirá en esta página para que te quedes aquí.',
+    modalTitle: 'Contacta Nuestro Concierge',
+    modalBody1: 'Para asistencia, por favor envíanos un mensaje a través de la plataforma de tu reserva en Airbnb. Para asuntos urgentes, llama o envía un WhatsApp al +5999 671 0054.',
+    modalBody2: '¡Siempre estamos aquí para ayudarte!'
+    ,
+    buttonLabel: 'Chatear con Nuestro Concierge'
+  },
+  pt: {
+    title: 'Bem-vindo ao One Mambo Beach Concierge',
+    subtitle: 'Sua experiência personalizada começa aqui',
+    aboutHeading: 'Sobre a Cobertura',
+    aboutText: 'Relaxe em nossa luxuosa subcobertura de três quartos com vista para o oceano em One Mambo Beach. Desfrute de vida espaçosa interna e externa, comodidades premium e vistas deslumbrantes do Caribe. Seja relaxando no seu terraço privativo ou explorando o vibrante Mambo Boulevard, esta cobertura oferece a escapada perfeita em Curaçao.',
+    galleryHeading: 'Galeria',
+    assistanceHeading: 'Precisa de Ajuda?',
+    assistanceText: 'Clique abaixo para contatar nosso concierge para perguntas sobre a cobertura, a ilha e sua estadia. Um painel de mensagens abrirá nesta página para que você fique aqui.',
+    modalTitle: 'Contate Nosso Concierge',
+    modalBody1: 'Para assistência, por favor envie uma mensagem através da plataforma de reserva do Airbnb. Para assuntos urgentes, ligue ou envie WhatsApp para +5999 671 0054.',
+    modalBody2: 'Estamos sempre aqui para ajudar!'
+    ,
+    buttonLabel: 'Conversar com Nosso Concierge'
+  },
+  nl: {
+    title: 'Welkom bij One Mambo Beach Concierge',
+    subtitle: 'Je persoonlijke gastbeleving begint hier',
+    aboutHeading: 'Over het Penthouse',
+    aboutText: 'Ontspan in ons luxe driekamer sub-penthouse met uitzicht op de oceaan bij One Mambo Beach. Geniet van ruime binnen-buiten leefruimtes, premium voorzieningen en adembenemende uitzichten over de Caraïben. Of je nu ontspant op je privéterras of het bruisende Mambo Boulevard verkent, dit penthouse biedt de perfecte Curaçao-vakantie.',
+    galleryHeading: 'Galerij',
+    assistanceHeading: 'Hulp Nodig?',
+    assistanceText: 'Klik hieronder om contact op te nemen met onze conciërge voor vragen over het penthouse, het eiland en je verblijf. Er opent een berichtenpaneel op deze pagina zodat je hier blijft.',
+    modalTitle: 'Neem Contact op met Onze Conciërge',
+    modalBody1: 'Voor assistentie kun je via het Airbnb-platform van je reservering een bericht sturen. Voor urgente zaken kun je bellen of WhatsAppen naar +5999 671 0054.',
+    modalBody2: 'We staan altijd voor je klaar!'
+    ,
+    buttonLabel: 'Chat met Onze Conciërge'
+  },
+  de: {
+    title: 'Willkommen im One Mambo Beach Concierge',
+    subtitle: 'Dein persönliches Erlebnis beginnt hier',
+    aboutHeading: 'Über das Penthouse',
+    aboutText: 'Entspanne dich in unserem luxuriösen Drei-Schlafzimmer Sub-Penthouse mit Blick auf den Ozean im One Mambo Beach. Genieße großzügiges Indoor-Outdoor-Leben, erstklassige Annehmlichkeiten und atemberaubende Aussichten auf die Karibik. Ob du auf deiner privaten Terrasse entspannst oder den lebendigen Mambo Boulevard erkundest, dieses Penthouse bietet den perfekten Curaçao-Urlaub.',
+    galleryHeading: 'Galerie',
+    assistanceHeading: 'Brauchen Sie Hilfe?',
+    assistanceText: 'Klicke unten, um unseren Concierge zu kontaktieren, wenn du Fragen zum Penthouse, zur Insel oder zu deinem Aufenthalt hast. Ein Nachrichtenfenster wird auf dieser Seite geöffnet, damit du hier bleiben kannst.',
+    modalTitle: 'Kontaktiere unseren Concierge',
+    modalBody1: 'Für Unterstützung sende uns bitte eine Nachricht über die Plattform deiner Airbnb-Buchung. Für dringende Angelegenheiten rufe +5999 671 0054 an oder schreibe uns per WhatsApp.',
+    modalBody2: 'Wir sind immer hier, um zu helfen!'
+    ,
+    buttonLabel: 'Chat mit unserem Concierge'
+  },
+  fr: {
+    title: 'Bienvenue à One Mambo Beach Concierge',
+    subtitle: 'Votre expérience personnalisée commence ici',
+    aboutHeading: 'À propos du Penthouse',
+    aboutText: 'Détendez-vous dans notre luxueux sous-penthouse de trois chambres surplombant l’océan à One Mambo Beach. Profitez d’un mode de vie intérieur-extérieur spacieux, d’équipements haut de gamme et de vues imprenables sur les Caraïbes. Que vous vous prélassiez sur votre terrasse privée ou que vous exploriez le vibrant Mambo Boulevard, ce penthouse offre l’escapade parfaite à Curaçao.',
+    galleryHeading: 'Galerie',
+    assistanceHeading: 'Besoin d’aide ?',
+    assistanceText: 'Cliquez ci-dessous pour contacter notre concierge pour des questions sur le penthouse, l’île et votre séjour. Un panneau de message s’ouvrira sur cette page pour que vous restiez ici.',
+    modalTitle: 'Contactez Notre Concierge',
+    modalBody1: 'Pour obtenir de l’aide, veuillez nous envoyer un message via la plateforme de réservation Airbnb. Pour les urgences, appelez ou envoyez WhatsApp au +5999 671 0054.',
+    modalBody2: 'Nous sommes toujours là pour aider!'
+    ,
+    buttonLabel: 'Discuter avec Notre Concierge'
+  }
+};
+
+// Update the text on the page based on the selected language
+function updateLanguage(lang) {
+  if (!lang || lang === 'en') {
+    // Restore default English text
+    document.getElementById('title-text').textContent = 'Welcome to One Mambo Beach Concierge';
+    document.getElementById('subtitle-text').textContent = 'Your personalized guest experience starts here';
+    document.getElementById('about-heading').textContent = 'About the Penthouse';
+    document.getElementById('about-text').textContent = 'Relax in our luxurious three-bedroom sub-penthouse overlooking the ocean at One Mambo Beach. Enjoy spacious indoor-outdoor living, premium amenities, and breathtaking views of the Caribbean. Whether you\'re lounging on your private terrace or exploring the vibrant Mambo Boulevard, this penthouse offers the perfect Curaçao getaway.';
+    document.getElementById('gallery-heading').textContent = 'Gallery';
+    document.getElementById('assistance-heading').textContent = 'Need Assistance?';
+    document.getElementById('assistance-text').textContent = 'Click below to contact our concierge for questions about the penthouse, the island, and your stay. A message panel will open on this page so you stay right here.';
+    document.getElementById('modal-title').textContent = 'Contact Our Concierge';
+    document.getElementById('modal-body1').innerHTML = 'For assistance, please message us via your Airbnb booking platform. For urgent matters, call or WhatsApp <strong>+5999 671 0054</strong>.';
+    document.getElementById('modal-body2').textContent = 'We are always here to help!';
+    document.getElementById('chat-button').textContent = 'Chat with Our Concierge';
+    return;
+  }
+  const tr = translations[lang];
+  if (!tr) return;
+  document.getElementById('title-text').textContent = tr.title;
+  document.getElementById('subtitle-text').textContent = tr.subtitle;
+  document.getElementById('about-heading').textContent = tr.aboutHeading;
+  document.getElementById('about-text').textContent = tr.aboutText;
+  document.getElementById('gallery-heading').textContent = tr.galleryHeading;
+  document.getElementById('assistance-heading').textContent = tr.assistanceHeading;
+  document.getElementById('assistance-text').textContent = tr.assistanceText;
+  document.getElementById('modal-title').textContent = tr.modalTitle;
+  document.getElementById('modal-body1').textContent = tr.modalBody1;
+  document.getElementById('modal-body2').textContent = tr.modalBody2;
+  document.getElementById('chat-button').textContent = tr.buttonLabel;
+}
+
+// Handle language selection from dropdown
+function changeLanguage(lang) {
+  updateLanguage(lang);
+}
+function closeModal() {
+  document.getElementById('contact-modal').style.display = 'none';
+}
+// Close the modal when clicking on the x
+document.addEventListener('DOMContentLoaded', function() {
+  var closeBtn = document.querySelector('.close');
+  if (closeBtn) closeBtn.onclick = closeModal;
+  // Close modal when clicking outside of it
+  window.onclick = function(event) {
+    const modal = document.getElementById('contact-modal');
+    if (event.target == modal) {
+      closeModal();
+    }
+  };
+});
+</script>
+
+</body>
+</html>
