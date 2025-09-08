@@ -1,4 +1,4 @@
-const fetch = require('node-fetch');
+
 
 /*
  * Serverless function to handle concierge chat requests.
